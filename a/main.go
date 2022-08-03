@@ -8,3 +8,5 @@ import (
 	_ "github.com/homeport/dyff/pkg/dyff"
 	_ "gopkg.in/yaml.v3"
 )
+
+func main() {}
