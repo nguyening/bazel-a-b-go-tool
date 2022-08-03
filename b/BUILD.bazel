@@ -1,0 +1,11 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/a-b-go-tool/b
+gazelle(name = "gazelle")
+
+genrule(
+    name = "sample",
+    outs = ["outfile"],
+    cmd = "$(location @a//:a) > $(location :outfile)",
+    tools = ["@a//:a"],
+)

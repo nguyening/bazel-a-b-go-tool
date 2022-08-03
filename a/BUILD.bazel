@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/a-b-go-tool/a
+gazelle(name = "gazelle")
+
+go_library(
+    name = "a_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/a-b-go-tool/a",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_gonvenience_ytbx//:ytbx",
+        "@com_github_hexops_gotextdiff//:gotextdiff",
+        "@com_github_hexops_gotextdiff//myers",
+        "@com_github_hexops_gotextdiff//span",
+        "@com_github_homeport_dyff//pkg/dyff",
+        "@in_gopkg_yaml_v3//:yaml_v3",
+    ],
+)
+
+go_binary(
+    name = "a",
+    embed = [":a_lib"],
+    visibility = ["//visibility:public"],
+)
